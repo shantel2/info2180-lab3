@@ -2,16 +2,13 @@ window.onload = function()
 {
     //user turns 
     let x_turn = true;
-    const X_CLASS ="X";
+    const X_CLASS = "X";
     const O_CLASS = "O";
     
     let xWinningVal= 0;
     let oWinningVal=0;
 
 let board = document.getElementById("board");//access the board
-
-let status = document.getElementById("status");
-
 
 //array of the winning combinations
 const WINNER_GROUP=[
@@ -25,7 +22,6 @@ const WINNER_GROUP=[
     [2,4,6]
 ];
 
-let button = document.getElementsByClassName("button");//access button element
 let div = board.querySelectorAll("div") //get all the div tags
 
 //get the div elements and loop through to give each a different class
@@ -42,7 +38,6 @@ div.forEach((element,index) => {
     element.onmouseout =()=>{
         element.classList.remove("hover");        
     }
-
 });
 
 function clickListner(e){
@@ -54,8 +49,13 @@ function clickListner(e){
     winnerVal = winner();
 
     if(winnerVal == 1){
-      status.innerHTML = "Congratulations! "+ currentClass + "is the Winner!"; 
+        document.getElementById("status").classList.add("you-won");
+        document.getElementById("status").innerHTML= "Congratulations! " + element.innerHTML + " is the Winner!";
 
+        //remove the listner from each box after a person won
+        div.forEach(element => { 
+            element.removeEventListener("click", clickListner);
+        });
     }
 }
 
@@ -98,6 +98,14 @@ function winner(){
     }
 
 }
+
+document.getElementsByClassName("btn")[0].addEventListener("click", function(){
+    div.forEach((element) => {
+        element.innerHTML = " ";
+        window.location.reload();
+    });
+
+});
 
 }; 
 
