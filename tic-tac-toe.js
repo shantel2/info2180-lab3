@@ -10,6 +10,10 @@ window.onload = function()
 
 let board = document.getElementById("board");//access the board
 
+let status = document.getElementById("status");
+
+
+//array of the winning combinations
 const WINNER_GROUP=[
     [0,1,2],
     [3,4,5],
@@ -50,7 +54,8 @@ function clickListner(e){
     winnerVal = winner();
 
     if(winnerVal == 1){
-      console.log(currentClass + " has won"); 
+      status.innerHTML = "Congratulations! "+ currentClass + "is the Winner!"; 
+
     }
 }
 
