@@ -50,7 +50,7 @@ function clickListner(e){
     winnerVal = winner();
 
     if(winnerVal == 1){
-      console.log(currentClass + " has won");
+      console.log(currentClass + " has won"); 
     }
 }
 
